@@ -48,7 +48,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body className="flex min-h-dvh flex-col bg-paper text-ink">
+      <body className="flex min-h-dvh flex-col bg-paper text-ink" suppressHydrationWarning>
         <a
           href="#main"
           className="btn btn-primary btn-sm fixed top-3 left-3 z-50 -translate-y-20 focus:translate-y-0"
