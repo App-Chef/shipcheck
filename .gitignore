@@ -2,7 +2,6 @@
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/
 *.swp
 
 # Local builds of the CLI
@@ -11,5 +10,5 @@ Thumbs.db
 /dist/
 
 # Local environment
-.env
-.env.local
+config.bat
+node_modules
