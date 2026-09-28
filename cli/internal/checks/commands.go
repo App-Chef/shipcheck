@@ -110,14 +110,7 @@ func runCommands(ctx context.Context, env *Env, k commandKind) Result {
 		}
 		details = append(details, fmt.Sprintf("$ %s  (%s)", display, roundDuration(elapsed)))
 	}
-	return pass(passMessage(k.label), details...)
-}
-
-func passMessage(label string) string {
-	if label == "Tests" {
-		return "Tests passed"
-	}
-	return label + " passed"
+	return pass(k.label+" passed", details...)
 }
 
 func resolveCommands(k commandKind) ([][]string, error) {
