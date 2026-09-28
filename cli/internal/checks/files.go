@@ -117,7 +117,7 @@ var CI = Check{
 			return Result{
 				Status:     Warn,
 				Message:    "No CI configuration",
-				Suggestion: "Run tests on every push with CI, e.g. `shipcheck --json` in GitHub Actions.",
+				Suggestion: "Add a CI workflow so every push is tested (shipcheck runs in CI too).",
 			}
 		}
 		return pass("CI configured ("+strings.Join(found, ", ")+")", found...)

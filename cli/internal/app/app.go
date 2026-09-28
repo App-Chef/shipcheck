@@ -66,7 +66,9 @@ func newRootCommand(opts *options, stdout io.Writer, build BuildInfo) *cobra.Com
 	root := &cobra.Command{
 		Use:   "shipcheck",
 		Short: "Know you're ready before you ship.",
-		Long: `Shipcheck checks your project for common release blockers:
+		Long: `Know you're ready before you ship.
+
+Shipcheck checks your project for common release blockers:
 uncommitted changes, failing tests, broken builds, missing
 environment variables, missing README or license, and more.
 
