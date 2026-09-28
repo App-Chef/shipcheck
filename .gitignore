@@ -1,0 +1,15 @@
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local builds of the CLI
+/cli/shipcheck
+/cli/shipcheck.exe
+/dist/
+
+# Local environment
+.env
+.env.local
