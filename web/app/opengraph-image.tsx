@@ -4,13 +4,32 @@ export const alt = "Shipcheck: know you're ready before you ship";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const lines: [string, string, string][] = [
-  ["✓", "#6ad48a", "Working tree clean"],
-  ["✓", "#6ad48a", "Tests passed"],
-  ["✓", "#6ad48a", "Production build passed"],
-  ["✓", "#6ad48a", "Environment checked"],
-  ["⚠", "#f1c54c", "No CI configuration"],
+const lines: ["pass" | "warn", string][] = [
+  ["pass", "Working tree clean"],
+  ["pass", "Tests passed"],
+  ["pass", "Production build passed"],
+  ["pass", "Environment checked"],
+  ["warn", "No CI configuration"],
 ];
+
+// Glyphs are drawn as SVG: the default OG font has no ✓ or ⚠, and
+// fetching a fallback font would need network access at build time.
+function Tick({ color, size = 22 }: { color: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M5 12.5l4.5 4.5L19 7.5" stroke={color} strokeWidth="3" strokeLinecap="square" />
+    </svg>
+  );
+}
+
+function Warn({ size = 22 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 3L22 20H2L12 3Z" stroke="#f1c54c" strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M12 10v4.5M12 17v.5" stroke="#f1c54c" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -39,10 +58,9 @@ export default function OpengraphImage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: 28,
               }}
             >
-              ✓
+              <Tick color="#0b0b0c" size={28} />
             </div>
             Shipcheck
           </div>
@@ -75,14 +93,17 @@ export default function OpengraphImage() {
           <div style={{ color: "#8b9099" }}>$ shipcheck</div>
           <div style={{ marginTop: 18, fontWeight: 700 }}>SHIPCHECK</div>
           <div style={{ display: "flex", flexDirection: "column", marginTop: 14, gap: 6 }}>
-            {lines.map(([sym, color, text]) => (
-              <div key={text} style={{ display: "flex", gap: 12 }}>
-                <span style={{ color }}>{sym}</span>
+            {lines.map(([status, text]) => (
+              <div key={text} style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                {status === "pass" ? <Tick color="#6ad48a" /> : <Warn />}
                 {text}
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 18, color: "#6ad48a", fontWeight: 700 }}>✓ Ready to ship</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 18, color: "#6ad48a", fontWeight: 700 }}>
+            <Tick color="#6ad48a" />
+            Ready to ship
+          </div>
         </div>
       </div>
     ),
