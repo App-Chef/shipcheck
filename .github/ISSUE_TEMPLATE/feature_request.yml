@@ -1,0 +1,27 @@
+name: Feature or check request
+description: Suggest an improvement or a new check.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Shipcheck is a small, local, offline pre-shipping check. Accounts, dashboards, deployment, monitoring and network features are out of scope.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What release problem would this catch?
+      description: Describe a real situation where this would have helped.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should Shipcheck check or do? What should pass, warn and fail?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Could this be done with existing configuration (for example `commands.tests`)?

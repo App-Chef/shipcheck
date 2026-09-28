@@ -1,0 +1,16 @@
+# Shipcheck checks itself. See docs/configuration.md.
+version: 1
+
+git:
+  protected_branches:
+    - main
+
+# The CLI and the website live in subdirectories, so tell Shipcheck
+# how to test and build each of them.
+commands:
+  tests:
+    - go -C cli test ./...
+  build:
+    - go -C cli build ./...
+    - npm --prefix web run build
+  timeout: 10m
