@@ -51,8 +51,29 @@
   html {
     background: var(--color-paper);
     color: var(--color-ink);
+    color-scheme: light;
+    scrollbar-color: var(--color-muted) var(--color-paper);
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-muted);
+    border: 2px solid var(--color-paper);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink);
   }
 
   body {
